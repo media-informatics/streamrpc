@@ -1,2 +1,2 @@
 # streamrpc
-Demo project for gRCP streams with go
+Demo project for gRPC streams with go

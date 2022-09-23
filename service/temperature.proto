@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package service;
+option go_package = "github.com/media-informatics/streamrpc/service";
+
+import "google/protobuf/timestamp.proto";
+
+service TemperatureService {
+    rpc Subscribe(Request) returns (stream Response) {}
+}
+
+message Request {
+    int32 repeat = 1;
+}
+
+message Response {
+    google.protobuf.Timestamp time = 1;
+    float temperature = 2;
+}
