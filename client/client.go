@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"flag"
 	"fmt"
 	"io"
 	"log"
@@ -11,8 +12,15 @@ import (
 	"google.golang.org/grpc"
 )
 
+var (
+	port = flag.Int("port", service.Port, "Service port")
+	host = flag.String("host", service.Host, "Address of service machine")
+)
+
 func main() {
-	conn, err := grpc.Dial("localhost:50000", grpc.WithInsecure())
+	flag.Parse()
+	addr := fmt.Sprintf("%s:%d", *host, *port)
+	conn, err := grpc.Dial(addr, grpc.WithInsecure())
 	if err != nil {
 		log.Fatalf("cannot connect with server %v", err)
 	}

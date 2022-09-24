@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"log"
 	"math/rand"
@@ -48,8 +49,14 @@ func (s *TemperatureServiceServer) Subscribe(in *service.Request, srv service.Te
 	return err
 }
 
+var (
+	port = flag.Int("port", service.Port, "Service port")
+	host = flag.String("host", service.Host, "Address of service machine")
+)
+
 func main() {
-	lis, err := net.Listen("tcp", "localhost:50000")
+	flag.Parse()
+	lis, err := net.Listen("tcp", fmt.Sprintf("%s:%d", *host, *port))
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
