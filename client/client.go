@@ -38,7 +38,7 @@ func main() {
 		log.Fatalf("open stream error %v", err)
 	}
 
-	log.Printf("subscription start")
+	log.Printf("subscription start at %s", addr)
 	for {
 		resp, err := stream.Recv()
 		if err == io.EOF {
