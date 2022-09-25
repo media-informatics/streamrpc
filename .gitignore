@@ -16,3 +16,7 @@
 
 # generated from protobuffers for gRPC
 *.pb.go
+
+# unix executables
+server/server
+client/client
